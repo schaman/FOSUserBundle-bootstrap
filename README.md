@@ -1,4 +1,4 @@
 FOSUserBundle-bootstrap
 =======================
 
-FOSUserBundle forms styled with Bootstrap
+Symfony FOSUserBundle forms styled with Bootstrap
