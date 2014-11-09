@@ -4,6 +4,6 @@ FOSUserBundle-bootstrap
 Symfony FOSUserBundle forms styled with Bootstrap
 
 ## Installation
-
-1. Clone this to you Sympfony project's `app/Resources/FOSUserBundle`.
-2. Enjoy!
+```
+git submodule add git@github.com:schaman/FOSUserBundle-bootstrap.git app/Resources/FOSUserBundle
+```
