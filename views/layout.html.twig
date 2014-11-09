@@ -1,33 +1,51 @@
-{% extends 'FOSUserBundle::bootstrap101.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block body %}
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-      <div>
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-          {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-          <a href="{{ path('fos_user_security_logout') }}">
-            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-          </a>
-        {% else %}
-          <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-        {% endif %}
-      </div>
+<!-- #HEADER -->
+<header id="header">
+  <div id="logo-group">
+    <!-- PLACE YOUR LOGO HERE -->
+    <span id="logo"> <img src="{{ asset('img/logo.png') }}" alt="SmartAdmin"> </span>
+    <!-- END LOGO PLACEHOLDER -->
+  </div>
+</header>
 
-      {% for type, messages in app.session.flashbag.all() %}
-        {% for message in messages %}
-          <div class="flash-{{ type }}">
-            {{ message }}
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- MAIN CONTENT -->
+  <div id="content">
+    
+    {% block content %}
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3" style="padding:150px 20px;">
+          <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+              <a href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+              </a>
+            {% else %}
+              <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
           </div>
-        {% endfor %}
-      {% endfor %}
 
-      <div>
-        {% block fos_user_content %}
-        {% endblock fos_user_content %}
+          {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+              <div class="flash-{{ type }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endfor %}
+
+          <div class="well">
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+          </div>
+        </div>
       </div>
-    </div>
+
+    {% endblock %}
   </div>
 </div>
 {% endblock %}
